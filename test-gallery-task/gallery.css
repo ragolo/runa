@@ -1,0 +1,138 @@
+/**
+ * Picture Gallery Stylesheet
+ * 
+ * This CSS file implements a color-centralized, accessible, and standards-compliant
+ * gallery layout. All color values are defined as CSS variables in :root for easy
+ * maintenance and consistency. The design ensures a fixed gallery width, 
+ * visually unified tab bar, and proper image/caption presentation.
+ * 
+ * W3C Valid: All selectors and properties conform to CSS standards.
+ * 
+ * Key Features:
+ * - Centralized color palette using CSS variables.
+ * - Responsive, fixed-width gallery layout.
+ * - Tabs visually unified as a single bar, with clear active/inactive states.
+ * - Images appear visually "inset" using parent <dt> styling.
+ * - Caption background and text color match the design requirements.
+ * - No HTML changes required; all presentation is handled via CSS.
+ */
+
+/* Color palette for easy maintenance and consistency */
+:root {
+    --gallery-blue: #00B3FF;           /* Light blue for gallery background and borders */
+    --gallery-blue-dark: #6855EB;      /* Darker blue for inactive tabs */
+    --gallery-blue-active: #00B3FF;    /* Light blue for active tab */
+    --gallery-blue-hover: #8822C2;     /* Purple for tab hover */
+    --gallery-tab-active: #00B3FF;     /* Active tab background */
+    --gallery-tab-inactive: #6855EB;   /* Inactive tab background */
+    --gallery-tab-hover: #8822C2;      /* Tab hover background */
+    --gallery-cyan: #00FFFF;           /* Cyan for caption background */
+    --gallery-img-bg: gray;            /* Fallback image background */
+    --gallery-img-border: gray;        /* Fallback image border */
+    --gallery-img-inset: 0.5px inset gray; /* Inset border for image */
+    --gallery-caption-text: #000;      /* Black caption text */
+}
+
+/* Base font for accessibility and readability */
+body {
+    font-family: Calibri, Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
+
+.gallery {
+    margin-bottom: 2em;
+}
+
+/* Tab bar: visually unified, no border-radius, with spacing between tabs */
+.gallery-tabs {
+    list-style: none;
+    margin: 0 0 0 0;
+    padding: 0;
+    display: flex;
+}
+
+.gallery-tabs li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Tab buttons: use color variables, no border-radius, spacing to the right */
+.gallery-tabs li a {
+    display: block;
+    background: var(--gallery-tab-inactive);
+    color: #fff;
+    padding: 2px 14px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 0;
+    margin: 0 0.5em 0 0; /* 0.5em space to the right */
+    border-right: 1px solid #fff;
+}
+
+/* Remove right border and margin for last tab */
+.gallery-tabs li:last-child a {
+    border-right: none;
+    margin-right: 0;
+}
+
+/* Tab hover and active states */
+.gallery-tabs li a:hover {
+    background: var(--gallery-tab-hover);
+    color: #fff;
+}
+.gallery-tabs li.active a {
+    background: var(--gallery-tab-active);
+    color: #fff;
+}
+
+/* Gallery item: fixed width, light blue background, no border-radius */
+.gallery dl {
+    display: none;
+    margin: 0;
+    width: 520px; /* Ensures consistent width across galleries */
+    background: var(--gallery-blue);
+    box-sizing: border-box;
+    padding: 0.5em;
+    border: 2px groove var(--gallery-blue);
+    border-radius: 0px; /* No border-radius as per requirements */
+}
+
+/* Only the shown gallery item is displayed */
+.gallery dl.shown {
+    display: block;
+}
+
+/* Image container: centers image, adds blue border for "inset" effect */
+.gallery dl dt {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background: var(--gallery-blue);
+    box-sizing: border-box;
+}
+
+/* Image: centered, max width, white border, no shadow */
+.gallery dl dt img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+    border: 2px inset var(--gallery-blue);
+    background: var(--gallery-img-bg);
+    box-shadow: none;
+}
+
+/* Caption: cyan background, black text, no border-radius, margin for spacing */
+.gallery dl dd {
+    background: var(--gallery-cyan);
+    color: var(--gallery-caption-text);
+    padding: 14px 16px;
+    margin: 0.5em;
+    border-radius: 0;
+    font-size: 1em;
+    font-weight: normal;
+    line-height: 1.3;
+    box-sizing: border-box;
+    text-align: left;
+}

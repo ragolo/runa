@@ -6,6 +6,13 @@ import fs from "fs";
 import { plainToInstance } from "class-transformer";
 import { Transaction } from "../../domain/entities/Transaction";
 
+/**
+ * Centralized business rule: If amount is negative, return 0.
+ */
+export function normalizeAmount(amount: number): number {
+    return amount < 0 ? 0 : amount;
+}
+
 function loadCustomerAddresses(): Record<string, string> {
     const configPath = path.resolve(__dirname, '../../config/customer-addresses.json');
     if (!fs.existsSync(configPath)) {
@@ -22,7 +29,11 @@ function getMinConfirmations(): number {
 }
 
 function toTransactionArray(entities: any[]): Transaction[] {
-    return plainToInstance(Transaction, entities, { excludeExtraneousValues: false });
+    // Use normalizeAmount for each transaction
+    return plainToInstance(Transaction, entities, { excludeExtraneousValues: false }).map(tx => ({
+        ...tx,
+        amount: normalizeAmount(Number(tx.amount) || 0)
+    }));
 }
 
 @injectable()

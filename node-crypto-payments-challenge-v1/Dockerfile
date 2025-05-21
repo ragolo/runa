@@ -1,4 +1,7 @@
-FROM node:20-alpine
+FROM node:24-slim
+
+# Install netcat for wait-for-it.sh
+RUN apt-get update && apt-get install -y netcat-openbsd && rm -rf /var/lib/apt/lists/*
 
 # Set the working directory
 WORKDIR /usr/src/app
@@ -35,4 +38,4 @@ WORKDIR /usr/src/app/dist
 EXPOSE 3000
 
 # Usa wait-for-it.sh para esperar a la base de datos antes de arrancar la app
-CMD ["/wait-for-it.sh", "db:5432", "--", "node", "index.js"]
+CMD ["/wait-for-it.sh", "db:5432", "node", "index.js"]

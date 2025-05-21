@@ -1,0 +1,20 @@
+export class Transaction {
+    involvesWatchonly: boolean = false;
+    account: string = "";
+    address: string = "";
+    category: string = "";
+    amount: number = 0;
+    label: string = "";
+    confirmations: number = 0;
+    blockhash: string = "";
+    blockindex: number = 0;
+    blocktime: number = 0;
+    txid: string = "";
+    vout: number = 0;
+    walletconflicts: any[] = [];
+    time: number = 0;
+    timereceived: number = 0;
+    bip125Replaceable: string = "";
+    lastblock: string = "";
+    sourcefile: string = "";
+}

@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
+    # volumes:
+    #   - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgres://user:password@db:5432/mydatabase
+      - ENABLE_PERIODIC_PROCESSOR=true
+      - CRON_EXPRESSION=*/10 * * * * *
+      - MIN_CONFIRMATIONS=6
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src:/usr/src/app/src
+      - ./src/infrastructure/files:/usr/src/app/dist/infrastructure/files
+
+# volumes:
+#   postgres_data:

@@ -1,0 +1,50 @@
+{
+  "name": "node-crypto-payments-challenge-v1",
+  "version": "1.0.0",
+  "description": "A Node.js application for processing crypto payments and deposits.",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "build": "tsc",
+    "docker:build": "docker build -t node-crypto-payments-challenge-v1 .",
+    "docker:up": "docker-compose up",
+    "docker:down": "docker-compose down",
+    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
+  },
+  "dependencies": {
+    "class-transformer": "^0.5.1",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "node-cron": "^4.0.5",
+    "pg": "^8.16.0",
+    "reflect-metadata": "^0.2.2",
+    "ts-node": "^10.9.1",
+    "tsyringe": "^4.10.0",
+    "typeorm": "^0.3.24",
+    "typescript": "^4.5.4"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^6.1.1",
+    "@types/express": "^5.0.2",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^16.18.126",
+    "@types/node-cron": "^3.0.11",
+    "@types/pg": "^8.15.2",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^29.7.0",
+    "prettier": "^2.5.1",
+    "ts-jest": "^29.3.4"
+  },
+  "keywords": [
+    "crypto",
+    "payments",
+    "nodejs",
+    "typescript",
+    "docker"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}

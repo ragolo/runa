@@ -1,4 +1,12 @@
 /* If JavaScript is available */
 
+.gallery dl {
+    display: none;
+    margin:  0; /* Margin for spacing */
+}
+.gallery dl.shown {
+    display: block;
+}
+
 
 

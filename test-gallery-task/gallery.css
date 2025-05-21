@@ -88,19 +88,14 @@ body {
 
 /* Gallery item: fixed width, light blue background, no border-radius */
 .gallery dl {
-    display: none;
-    margin: 0;
+    display: block; /* Show all by default */
+    margin: .5em 0; /* Margin for spacing */
     width: 520px; /* Ensures consistent width across galleries */
     background: var(--gallery-blue);
     box-sizing: border-box;
     padding: 0.5em;
     border: 2px groove var(--gallery-blue);
     border-radius: 0px; /* No border-radius as per requirements */
-}
-
-/* Only the shown gallery item is displayed */
-.gallery dl.shown {
-    display: block;
 }
 
 /* Image container: centers image, adds blue border for "inset" effect */
